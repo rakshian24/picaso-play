@@ -1,5 +1,11 @@
+import Canvas from "./components/Canvas";
+
 function App() {
-  return <div className="App">Picaso Play</div>;
+  return (
+    <div>
+      <Canvas />
+    </div>
+  );
 }
 
 export default App;
