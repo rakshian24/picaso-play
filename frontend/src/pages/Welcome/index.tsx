@@ -3,12 +3,21 @@ import { colors, screenSize } from "../../constants";
 import Sketch from "../../assets/pngs/sketch.webp";
 import Button from "../../components/CustomButton";
 import { HomeOutlined, MeetingRoomOutlined } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 
 type Props = {};
 
 const Welcome = (props: Props) => {
   const isTablet = useMediaQuery(`(max-width:${screenSize.tablet})`);
   const isPcAndAbove = useMediaQuery(`(min-width:${screenSize.pc})`);
+
+  const navigate = useNavigate();
+
+  const createRoom = () => {
+    const roomId = uuid();
+    navigate(`/drawing/${roomId}`);
+  };
 
   return (
     <Stack
@@ -66,6 +75,7 @@ const Welcome = (props: Props) => {
                 bgcolor: colors.yellowGreenHover,
               },
             }}
+            onClick={createRoom}
           />
           <Button
             buttonText="JOIN ROOM"

@@ -3,15 +3,26 @@ import http from "http";
 import path from "path";
 import dotenv from "dotenv";
 import { Server, Socket } from "socket.io";
+import cors from "cors";
 dotenv.config({ path: "./.env" });
 
 const app = express();
 const { SERVER_PORT } = process.env;
 
 const server = http.createServer(app);
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  })
+);
+
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -44,6 +55,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./build", "index.html"));
 });
 
-app.listen(SERVER_PORT, () => {
+server.listen(SERVER_PORT, () => {
   console.log(`Server is running on port: ${SERVER_PORT}`);
 });

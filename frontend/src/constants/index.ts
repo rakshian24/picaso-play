@@ -1,5 +1,6 @@
 export const ROUTES = {
   WELCOME: "/",
+  DRAWING_ROOM: "/drawing/:roomId"
 };
 
 export const screenSize = {
