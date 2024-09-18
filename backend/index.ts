@@ -11,19 +11,13 @@ const { SERVER_PORT } = process.env;
 
 const server = http.createServer(app);
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  })
-);
-
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: true,
     methods: ["GET", "POST"],
     credentials: true,
   },
+  path: "/socket.io",
 });
 
 io.on("connection", (socket: Socket) => {

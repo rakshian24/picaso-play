@@ -13,7 +13,7 @@ const Canvas = ({ roomId }: Props) => {
 
   useEffect(() => {
     // Initialize socket connection
-    const socketConnection = io("http://localhost:5001"); // Backend server address
+    const socketConnection = io(); // Backend server address
     setSocket(socketConnection);
 
     // Join the room
